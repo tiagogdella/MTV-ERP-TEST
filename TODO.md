@@ -1,55 +1,55 @@
-# MTV ERP — Roadmap de Desenvolvimento
+# MTV ERP — Development Roadmap
 
-> Sistema ERP web para indústria de beneficiamento de arroz.
-> Desenvolvido em etapas por um único desenvolvedor.
-> Marque os itens conforme avançar.
-
----
-
-## Índice
-
-- [Fase 0 — Preparação do Projeto](#fase-0--preparação-do-projeto)
-- [Fase 1 — Arquitetura Base](#fase-1--arquitetura-base)
-- [Fase 2 — Autenticação](#fase-2--autenticação)
-- [Fase 3 — Cadastros Essenciais](#fase-3--cadastros-essenciais)
-- [Fase 4 — Estoque e Lotes](#fase-4--estoque-e-lotes)
-- [Fase 5 — Compras](#fase-5--compras)
-- [Fase 6 — Produção e Beneficiamento](#fase-6--produção-e-beneficiamento)
-- [Fase 7 — Vendas e Expedição](#fase-7--vendas-e-expedição)
-- [Fase 8 — Financeiro](#fase-8--financeiro)
-- [Fase 9 — Dashboard e Relatórios MVP](#fase-9--dashboard-e-relatórios-mvp)
-- [MVP — Definição e Critérios](#mvp--definição-e-critérios)
-- [v1.1 — Qualidade e Estabilidade](#v11--qualidade-e-estabilidade)
-- [v1.2 — Rastreabilidade e Auditoria](#v12--rastreabilidade-e-auditoria)
-- [v1.3 — Fiscal e Integração NF-e](#v13--fiscal-e-integração-nf-e)
-- [v2.0 — Módulos Avançados](#v20--módulos-avançados)
-- [v3.0 — Inteligência e Automação](#v30--inteligência-e-automação)
-- [Entidades do Banco de Dados](#entidades-do-banco-de-dados)
-- [Padrões e Convenções](#padrões-e-convenções)
+> Web ERP system for a rice processing industry.
+> Developed in stages by a single developer.
+> Check items off as you progress.
 
 ---
 
-## Fase 0 — Preparação do Projeto
+## Index
 
-> Objetivo: ambiente 100% funcional antes de escrever qualquer lógica de negócio.
+- [Phase 0 — Project Setup](#phase-0--project-setup)
+- [Phase 1 — Base Architecture](#phase-1--base-architecture)
+- [Phase 2 — Authentication](#phase-2--authentication)
+- [Phase 3 — Core Registrations](#phase-3--core-registrations)
+- [Phase 4 — Inventory & Batches](#phase-4--inventory--batches)
+- [Phase 5 — Purchasing](#phase-5--purchasing)
+- [Phase 6 — Production & Processing](#phase-6--production--processing)
+- [Phase 7 — Sales & Shipping](#phase-7--sales--shipping)
+- [Phase 8 — Financial](#phase-8--financial)
+- [Phase 9 — Dashboard & MVP Reports](#phase-9--dashboard--mvp-reports)
+- [MVP — Definition & Criteria](#mvp--definition--criteria)
+- [v1.1 — Quality & Stability](#v11--quality--stability)
+- [v1.2 — Traceability & Audit](#v12--traceability--audit)
+- [v1.3 — Tax & NF-e Integration](#v13--tax--nf-e-integration)
+- [v2.0 — Advanced Modules](#v20--advanced-modules)
+- [v3.0 — Intelligence & Automation](#v30--intelligence--automation)
+- [Database Entities](#database-entities)
+- [Standards & Conventions](#standards--conventions)
 
-### Repositório e Versionamento
+---
 
-- [ ] Criar repositório no GitHub (`MTV-ERP`)
-- [ ] Criar `.gitignore` adequado (Node, Vue, `.env`, `dist/`, `node_modules/`)
-- [ ] Definir estratégia de branches (`main` = produção, `develop` = desenvolvimento, `feature/*`)
-- [ ] Criar commit inicial com estrutura de pastas vazia
-- [ ] Configurar proteção de branch `main` no GitHub
+## Phase 0 — Project Setup
 
-### Estrutura de Pastas do Monorepo
+> Goal: fully working environment before writing any business logic.
+
+### Repository & Version Control
+
+- [x] Create GitHub repository (`MTV-ERP-TEST`)
+- [x] Create proper `.gitignore` (Node, Vue, `.env`, `dist/`, `node_modules/`)
+- [x] Define branch strategy (`main` = production, `develop` = development, `feature/*`)
+- [x] Create initial commit with base folder structure
+- [x] Configure `main` branch protection on GitHub
+
+### Monorepo Folder Structure
 
 ```
 mtv-erp/
 ├── apps/
-│   ├── web/          ← frontend Vue 3
-│   └── api/          ← backend Express
+│   ├── web/          ← Vue 3 frontend
+│   └── api/          ← Express backend
 ├── packages/
-│   └── shared/       ← tipos e DTOs compartilhados
+│   └── shared/       ← shared types and DTOs
 ├── docker/
 ├── docker-compose.yml
 ├── docker-compose.dev.yml
@@ -57,53 +57,53 @@ mtv-erp/
 └── TODO.md
 ```
 
-- [ ] Criar estrutura de pastas do monorepo
-- [ ] Criar `README.md` raiz com visão geral do projeto
+- [x] Create monorepo folder structure
+- [x] Create root `README.md` with project overview
 
-### Docker e Ambiente
+### Docker & Environment
 
-- [ ] Criar `docker-compose.yml` para produção
-- [ ] Criar `docker-compose.dev.yml` para desenvolvimento (com hot-reload)
-- [ ] Configurar serviço `postgres` no Compose (volume persistente)
-- [ ] Configurar serviço `pgadmin` no Compose (acesso dev)
-- [ ] Configurar serviço `api` no Compose
-- [ ] Configurar serviço `web` no Compose
-- [ ] Criar `Dockerfile` para o backend (multi-stage: build + runtime)
-- [ ] Criar `Dockerfile` para o frontend (multi-stage: build + nginx)
-- [ ] Criar `.dockerignore` para backend e frontend
-- [ ] Testar `docker-compose up` e verificar que todos os serviços sobem
-- [ ] Criar script `dev.sh` para iniciar ambiente de desenvolvimento
+- [ ] Create `docker-compose.yml` for production
+- [ ] Create `docker-compose.dev.yml` for development (with hot-reload)
+- [ ] Configure `postgres` service in Compose (persistent volume)
+- [ ] Configure `pgadmin` service in Compose (dev access)
+- [ ] Configure `api` service in Compose
+- [ ] Configure `web` service in Compose
+- [ ] Create backend `Dockerfile` (multi-stage: build + runtime)
+- [ ] Create frontend `Dockerfile` (multi-stage: build + nginx)
+- [ ] Create `.dockerignore` for backend and frontend
+- [ ] Test `docker-compose up` and verify all services start
+- [ ] Create `dev.sh` script to start development environment
 
-### Variáveis de Ambiente
+### Environment Variables
 
-- [ ] Criar `.env.example` com todas as variáveis necessárias documentadas
-- [ ] Criar `.env.dev` para desenvolvimento (não versionar)
-- [ ] Definir variáveis: `DATABASE_URL`, `JWT_SECRET`, `JWT_REFRESH_SECRET`, `PORT`, `NODE_ENV`, `CORS_ORIGIN`
-- [ ] Configurar validação de variáveis de ambiente no startup da API (`zod` ou `envalid`)
+- [ ] Create `.env.example` with all required variables documented
+- [ ] Create `.env.dev` for development (do not version)
+- [ ] Define variables: `DATABASE_URL`, `JWT_SECRET`, `JWT_REFRESH_SECRET`, `PORT`, `NODE_ENV`, `CORS_ORIGIN`
+- [ ] Configure environment variable validation on API startup (`zod` or `envalid`)
 
 ---
 
-## Fase 1 — Arquitetura Base
+## Phase 1 — Base Architecture
 
-> Objetivo: fundação sólida de código antes das funcionalidades.
+> Goal: solid code foundation before any features.
 
-### Backend — Setup Inicial
+### Backend — Initial Setup
 
-- [ ] Inicializar projeto Node.js com TypeScript (`apps/api`)
-- [ ] Configurar `tsconfig.json` (strict mode, paths aliases `@/`)
-- [ ] Instalar dependências: `express`, `cors`, `helmet`, `morgan`, `dotenv`, `zod`
-- [ ] Instalar devDependencies: `typescript`, `ts-node-dev`, `@types/express`, `@types/node`
-- [ ] Configurar ESLint + Prettier para o backend
-- [ ] Criar script `dev` com `ts-node-dev` (hot-reload)
-- [ ] Criar script `build` e `start` para produção
+- [ ] Initialize Node.js project with TypeScript (`apps/api`)
+- [ ] Configure `tsconfig.json` (strict mode, path aliases `@/`)
+- [ ] Install dependencies: `express`, `cors`, `helmet`, `morgan`, `dotenv`, `zod`
+- [ ] Install devDependencies: `typescript`, `ts-node-dev`, `@types/express`, `@types/node`
+- [ ] Configure ESLint + Prettier for backend
+- [ ] Create `dev` script with `ts-node-dev` (hot-reload)
+- [ ] Create `build` and `start` scripts for production
 
-### Backend — Estrutura de Pastas (Clean Architecture adaptada)
+### Backend — Folder Structure (adapted Clean Architecture)
 
 ```
 apps/api/src/
-├── config/           ← variáveis de ambiente, constantes
-├── database/         ← cliente Prisma, seeds, migrations
-├── modules/          ← cada módulo do ERP
+├── config/           ← environment variables, constants
+├── database/         ← Prisma client, seeds, migrations
+├── modules/          ← each ERP module
 │   └── auth/
 │       ├── auth.controller.ts
 │       ├── auth.service.ts
@@ -116,841 +116,841 @@ apps/api/src/
 │   ├── errors/
 │   ├── utils/
 │   └── types/
-├── app.ts            ← configuração do Express
+├── app.ts            ← Express configuration
 └── server.ts         ← entry point
 ```
 
-- [ ] Criar estrutura de pastas do backend
-- [ ] Criar `app.ts` com middlewares globais (cors, helmet, morgan, json parser)
-- [ ] Criar `server.ts` com inicialização do servidor
-- [ ] Criar rota de health check `GET /health`
+- [ ] Create backend folder structure
+- [ ] Create `app.ts` with global middlewares (cors, helmet, morgan, json parser)
+- [ ] Create `server.ts` with server initialization
+- [ ] Create health check route `GET /health`
 
-### Backend — Tratamento de Erros
+### Backend — Error Handling
 
-- [ ] Criar classe `AppError` (erro controlado da aplicação)
-- [ ] Criar classes específicas: `NotFoundError`, `ValidationError`, `UnauthorizedError`, `ForbiddenError`, `ConflictError`
-- [ ] Criar middleware `errorHandler` global (captura todos os erros)
-- [ ] Criar middleware `notFound` para rotas inexistentes
-- [ ] Padronizar formato de resposta de erro: `{ error: { code, message, details? } }`
-- [ ] Padronizar formato de resposta de sucesso: `{ data: ..., meta?: { page, total } }`
+- [ ] Create `AppError` class (controlled application error)
+- [ ] Create specific classes: `NotFoundError`, `ValidationError`, `UnauthorizedError`, `ForbiddenError`, `ConflictError`
+- [ ] Create global `errorHandler` middleware (catches all errors)
+- [ ] Create `notFound` middleware for unknown routes
+- [ ] Standardize error response format: `{ error: { code, message, details? } }`
+- [ ] Standardize success response format: `{ data: ..., meta?: { page, total } }`
 
 ### Backend — Prisma ORM
 
-- [ ] Instalar Prisma: `prisma`, `@prisma/client`
-- [ ] Executar `npx prisma init` e configurar `schema.prisma`
-- [ ] Configurar provider `postgresql`
-- [ ] Criar cliente Prisma singleton (`database/prisma.ts`)
-- [ ] Configurar `prisma generate` no script de build
-- [ ] Criar pasta `database/migrations/` (gerenciada pelo Prisma)
-- [ ] Criar pasta `database/seeds/` com seed inicial (usuário admin)
+- [ ] Install Prisma: `prisma`, `@prisma/client`
+- [ ] Run `npx prisma init` and configure `schema.prisma`
+- [ ] Configure `postgresql` provider
+- [ ] Create Prisma singleton client (`database/prisma.ts`)
+- [ ] Configure `prisma generate` in build script
+- [ ] Create `database/migrations/` folder (managed by Prisma)
+- [ ] Create `database/seeds/` folder with initial seed (admin user)
 
-### Backend — Middlewares Compartilhados
+### Backend — Shared Middlewares
 
-- [ ] Criar middleware `authenticate` (valida JWT, injeta `req.user`)
-- [ ] Criar middleware `authorize(roles[])` (verifica permissões)
-- [ ] Criar middleware `validate(schema)` (valida body/query/params com Zod)
-- [ ] Criar middleware `paginate` (extrai `page` e `limit` da query)
-- [ ] Criar middleware `requestLogger` (loga todas as requisições)
-- [ ] Criar middleware `rateLimiter` para rotas de autenticação
+- [ ] Create `authenticate` middleware (validates JWT, injects `req.user`)
+- [ ] Create `authorize(roles[])` middleware (checks permissions)
+- [ ] Create `validate(schema)` middleware (validates body/query/params with Zod)
+- [ ] Create `paginate` middleware (extracts `page` and `limit` from query)
+- [ ] Create `requestLogger` middleware (logs all requests)
+- [ ] Create `rateLimiter` middleware for authentication routes
 
-### Backend — Utilitários
+### Backend — Utilities
 
-- [ ] Criar utilitário de paginação (`buildPaginationMeta`, `buildPaginationQuery`)
-- [ ] Criar utilitário de hash de senha (`bcrypt`)
-- [ ] Criar utilitário de geração e validação de JWT
-- [ ] Criar utilitário de formatação de datas (`date-fns`)
-- [ ] Criar utilitário de geração de códigos únicos (pedidos, lotes, etc.)
-- [ ] Criar utilitário de logger estruturado (`winston` ou `pino`)
+- [ ] Create pagination utility (`buildPaginationMeta`, `buildPaginationQuery`)
+- [ ] Create password hashing utility (`bcrypt`)
+- [ ] Create JWT generation and validation utility
+- [ ] Create date formatting utility (`date-fns`)
+- [ ] Create unique code generation utility (orders, batches, etc.)
+- [ ] Create structured logger utility (`winston` or `pino`)
 
-### Frontend — Setup Inicial
+### Frontend — Initial Setup
 
-- [ ] Inicializar projeto Vite + Vue 3 + TypeScript (`apps/web`)
-- [ ] Configurar `tsconfig.json` com path aliases (`@/`)
-- [ ] Configurar `vite.config.ts` com alias e proxy para API
-- [ ] Instalar e configurar TailwindCSS + `autoprefixer`
-- [ ] Instalar Vue Router 4 e configurar `router/index.ts`
-- [ ] Instalar Pinia e configurar `stores/index.ts`
-- [ ] Instalar `axios` e criar instância configurada (`services/api.ts`)
-- [ ] Configurar interceptor de request (adiciona JWT ao header)
-- [ ] Configurar interceptor de response (trata erros globais, refresh token)
-- [ ] Instalar ESLint + Prettier para o frontend
-- [ ] Configurar `@vueuse/core` (composables utilitários)
+- [ ] Initialize Vite + Vue 3 + TypeScript project (`apps/web`)
+- [ ] Configure `tsconfig.json` with path aliases (`@/`)
+- [ ] Configure `vite.config.ts` with alias and API proxy
+- [ ] Install and configure TailwindCSS + `autoprefixer`
+- [ ] Install Vue Router 4 and configure `router/index.ts`
+- [ ] Install Pinia and configure `stores/index.ts`
+- [ ] Install `axios` and create configured instance (`services/api.ts`)
+- [ ] Configure request interceptor (adds JWT to header)
+- [ ] Configure response interceptor (handles global errors, refresh token)
+- [ ] Install ESLint + Prettier for frontend
+- [ ] Configure `@vueuse/core` (utility composables)
 
-### Frontend — Estrutura de Pastas
+### Frontend — Folder Structure
 
 ```
 apps/web/src/
-├── assets/           ← imagens, fontes
+├── assets/           ← images, fonts
 ├── components/
-│   ├── ui/           ← componentes base (Button, Input, Modal...)
-│   └── shared/       ← componentes de negócio reutilizáveis
-├── composables/      ← lógica reutilizável (useTable, useForm, useApi...)
+│   ├── ui/           ← base components (Button, Input, Modal...)
+│   └── shared/       ← reusable business components
+├── composables/      ← reusable logic (useTable, useForm, useApi...)
 ├── layouts/
 │   ├── AuthLayout.vue
 │   └── AppLayout.vue
-├── modules/          ← espelha os módulos do backend
+├── modules/          ← mirrors backend modules
 │   └── auth/
 │       ├── views/
 │       ├── components/
 │       └── store/
 ├── router/
-├── services/         ← chamadas à API organizadas por módulo
-├── stores/           ← Pinia stores globais
-├── styles/           ← CSS global, variáveis Tailwind
-└── types/            ← tipos TypeScript
+├── services/         ← API calls organized by module
+├── stores/           ← global Pinia stores
+├── styles/           ← global CSS, Tailwind variables
+└── types/            ← TypeScript types
 ```
 
-- [ ] Criar estrutura de pastas do frontend
+- [ ] Create frontend folder structure
 
-### Frontend — Layout Principal
+### Frontend — Main Layout
 
-- [ ] Criar `AuthLayout.vue` (tela limpa para login/cadastro)
-- [ ] Criar `AppLayout.vue` (sidebar + navbar + área de conteúdo)
-- [ ] Criar `Sidebar.vue` com links de navegação e ícones
-- [ ] Criar `Navbar.vue` com breadcrumb, nome do usuário, botão logout
-- [ ] Criar `Breadcrumb.vue` gerado automaticamente pela rota
-- [ ] Criar sistema de tema claro/escuro (toggle + persistência no localStorage)
-- [ ] Criar página `NotFound.vue` (404)
-- [ ] Criar página `Forbidden.vue` (403)
+- [ ] Create `AuthLayout.vue` (clean screen for login/registration)
+- [ ] Create `AppLayout.vue` (sidebar + navbar + content area)
+- [ ] Create `Sidebar.vue` with navigation links and icons
+- [ ] Create `Navbar.vue` with breadcrumb, username, logout button
+- [ ] Create `Breadcrumb.vue` auto-generated from route
+- [ ] Create light/dark theme system (toggle + localStorage persistence)
+- [ ] Create `NotFound.vue` page (404)
+- [ ] Create `Forbidden.vue` page (403)
 
-### Frontend — Componentes UI Base
+### Frontend — Base UI Components
 
-- [ ] `Button.vue` (variantes: primary, secondary, danger, ghost; tamanhos; loading state)
-- [ ] `Input.vue` (com label, erro, ícone, máscara)
-- [ ] `Select.vue` (com busca, opções agrupadas)
+- [ ] `Button.vue` (variants: primary, secondary, danger, ghost; sizes; loading state)
+- [ ] `Input.vue` (with label, error, icon, mask)
+- [ ] `Select.vue` (with search, grouped options)
 - [ ] `Textarea.vue`
-- [ ] `Checkbox.vue` e `Radio.vue`
-- [ ] `Badge.vue` (status coloridos)
-- [ ] `Modal.vue` (com slot de header, body, footer; tamanhos)
-- [ ] `Drawer.vue` (painel lateral deslizante)
+- [ ] `Checkbox.vue` and `Radio.vue`
+- [ ] `Badge.vue` (colored statuses)
+- [ ] `Modal.vue` (with header, body, footer slots; sizes)
+- [ ] `Drawer.vue` (sliding side panel)
 - [ ] `Tooltip.vue`
-- [ ] `Toast.vue` / sistema de notificações (`useToast`)
+- [ ] `Toast.vue` / notification system (`useToast`)
 - [ ] `Spinner.vue` / `LoadingOverlay.vue`
-- [ ] `EmptyState.vue` (quando lista está vazia)
-- [ ] `ConfirmDialog.vue` (confirmação de exclusão)
+- [ ] `EmptyState.vue` (when list is empty)
+- [ ] `ConfirmDialog.vue` (delete confirmation)
 - [ ] `Card.vue`
 - [ ] `Divider.vue`
 - [ ] `Avatar.vue`
 
-### Frontend — Componentes de Dados
+### Frontend — Data Components
 
-- [ ] `DataTable.vue` (colunas configuráveis, loading, paginação integrada, seleção de linhas)
-- [ ] `Pagination.vue` (anterior/próximo, páginas, itens por página)
-- [ ] `SearchInput.vue` (com debounce)
-- [ ] `FilterBar.vue` (filtros colapsáveis)
-- [ ] `SortableHeader.vue` (ordenação por coluna)
-- [ ] `FormSection.vue` (agrupa campos do formulário com título)
-- [ ] `PageHeader.vue` (título + breadcrumb + ações)
+- [ ] `DataTable.vue` (configurable columns, loading, integrated pagination, row selection)
+- [ ] `Pagination.vue` (previous/next, pages, items per page)
+- [ ] `SearchInput.vue` (with debounce)
+- [ ] `FilterBar.vue` (collapsible filters)
+- [ ] `SortableHeader.vue` (column sorting)
+- [ ] `FormSection.vue` (groups form fields with title)
+- [ ] `PageHeader.vue` (title + breadcrumb + actions)
 
-### Frontend — Composables Base
+### Frontend — Base Composables
 
-- [ ] `useApi(endpoint)` — wrapper para chamadas HTTP com loading/error
-- [ ] `useTable(fetchFn)` — gerencia paginação, filtros, ordenação
-- [ ] `useForm(schema)` — gerencia estado, validação e submit de formulários
-- [ ] `useConfirm()` — abre ConfirmDialog e retorna Promise
-- [ ] `useToast()` — exibe notificações
-- [ ] `useAuth()` — acesso ao estado de autenticação
-- [ ] `usePermission(permission)` — verifica se usuário tem permissão
+- [ ] `useApi(endpoint)` — HTTP call wrapper with loading/error
+- [ ] `useTable(fetchFn)` — manages pagination, filters, sorting
+- [ ] `useForm(schema)` — manages state, validation and form submit
+- [ ] `useConfirm()` — opens ConfirmDialog and returns Promise
+- [ ] `useToast()` — displays notifications
+- [ ] `useAuth()` — access to authentication state
+- [ ] `usePermission(permission)` — checks if user has permission
 
-### Pacote Shared (tipos compartilhados)
+### Shared Package (shared types)
 
-- [ ] Criar pacote `packages/shared` com tipos TypeScript
-- [ ] Exportar interfaces de DTOs compartilhados entre frontend e backend
-- [ ] Exportar enums compartilhados (`Role`, `Status`, `TipoMovimentacao`, etc.)
-- [ ] Configurar como workspace package no monorepo
+- [ ] Create `packages/shared` package with TypeScript types
+- [ ] Export shared DTO interfaces between frontend and backend
+- [ ] Export shared enums (`Role`, `Status`, `MovementType`, etc.)
+- [ ] Configure as workspace package in monorepo
 
 ---
 
-## Fase 2 — Autenticação
+## Phase 2 — Authentication
 
-> Objetivo: sistema de login seguro com controle de sessão.
+> Goal: secure login system with session control.
 
 ### Backend — Auth
 
-- [ ] Criar entidade `Usuario` no schema Prisma (id, nome, email, senha, role, ativo, timestamps)
-- [ ] Criar migration inicial
-- [ ] Criar `AuthRepository` (busca por email, busca por id)
-- [ ] Criar `AuthService` com métodos: `login`, `logout`, `refreshToken`, `me`
-- [ ] Criar `AuthController` com handlers HTTP
-- [ ] Criar rotas: `POST /auth/login`, `POST /auth/logout`, `POST /auth/refresh`, `GET /auth/me`
-- [ ] Implementar geração de `accessToken` (expiração curta: 15min)
-- [ ] Implementar geração de `refreshToken` (expiração longa: 7 dias)
-- [ ] Salvar `refreshToken` no banco (tabela `RefreshToken` com userId, token, expiresAt, revogado)
-- [ ] Criar migration para `RefreshToken`
-- [ ] Implementar revogação de refresh token no logout
-- [ ] Implementar limpeza de refresh tokens expirados
-- [ ] Criar seed com usuário admin padrão
-- [ ] Aplicar rate limiting no `POST /auth/login` (máx 10 tentativas/min por IP)
-- [ ] Logar tentativas de login (sucesso e falha)
+- [ ] Create `User` entity in Prisma schema (id, name, email, password, role, active, timestamps)
+- [ ] Create initial migration
+- [ ] Create `AuthRepository` (find by email, find by id)
+- [ ] Create `AuthService` with methods: `login`, `logout`, `refreshToken`, `me`
+- [ ] Create `AuthController` with HTTP handlers
+- [ ] Create routes: `POST /auth/login`, `POST /auth/logout`, `POST /auth/refresh`, `GET /auth/me`
+- [ ] Implement `accessToken` generation (short expiration: 15min)
+- [ ] Implement `refreshToken` generation (long expiration: 7 days)
+- [ ] Save `refreshToken` in database (`RefreshToken` table with userId, token, expiresAt, revoked)
+- [ ] Create `RefreshToken` migration
+- [ ] Implement refresh token revocation on logout
+- [ ] Implement expired refresh token cleanup
+- [ ] Create seed with default admin user
+- [ ] Apply rate limiting to `POST /auth/login` (max 10 attempts/min per IP)
+- [ ] Log login attempts (success and failure)
 
 ### Frontend — Auth
 
-- [ ] Criar `authStore` (Pinia) com: `user`, `accessToken`, `isAuthenticated`, `isLoading`
-- [ ] Criar actions: `login(email, password)`, `logout()`, `refreshToken()`, `fetchMe()`
-- [ ] Persistir `accessToken` em memória (não localStorage por segurança)
-- [ ] Persistir `refreshToken` em `httpOnly cookie` (backend deve setar)
-- [ ] Criar `LoginView.vue` com formulário validado
-- [ ] Criar guard de rota `requiresAuth` (redireciona para login se não autenticado)
-- [ ] Criar guard de rota `requiresGuest` (redireciona para dashboard se já logado)
-- [ ] Implementar renovação automática de token no interceptor do Axios
-- [ ] Implementar fila de requests durante refresh (evita múltiplos refreshes simultâneos)
-- [ ] Criar página de `ForgotPassword.vue` (estrutura, integração futura)
-- [ ] Tratar expiração de sessão: exibir modal "Sessão expirada, faça login novamente"
+- [ ] Create `authStore` (Pinia) with: `user`, `accessToken`, `isAuthenticated`, `isLoading`
+- [ ] Create actions: `login(email, password)`, `logout()`, `refreshToken()`, `fetchMe()`
+- [ ] Persist `accessToken` in memory (not localStorage for security)
+- [ ] Persist `refreshToken` in `httpOnly cookie` (backend must set)
+- [ ] Create `LoginView.vue` with validated form
+- [ ] Create `requiresAuth` route guard (redirects to login if not authenticated)
+- [ ] Create `requiresGuest` route guard (redirects to dashboard if already logged in)
+- [ ] Implement automatic token renewal in Axios interceptor
+- [ ] Implement request queue during refresh (avoids multiple simultaneous refreshes)
+- [ ] Create `ForgotPassword.vue` page (structure, future integration)
+- [ ] Handle session expiration: display modal "Session expired, please log in again"
 
 ---
 
-## Fase 3 — Cadastros Essenciais
+## Phase 3 — Core Registrations
 
-> Objetivo: cadastrar as entidades base que os demais módulos dependem.
+> Goal: register the base entities that other modules depend on.
 
-### Backend — Padrão de Módulo CRUD
+### Backend — CRUD Module Pattern
 
-Para cada módulo abaixo, seguir o padrão:
-- `module.schema.ts` — schemas Zod de validação
-- `module.dto.ts` — tipos de entrada/saída
-- `module.repository.ts` — acesso ao banco (Prisma)
-- `module.service.ts` — regras de negócio
-- `module.controller.ts` — handlers HTTP
-- `module.routes.ts` — definição de rotas
+For each module below, follow the pattern:
+- `module.schema.ts` — Zod validation schemas
+- `module.dto.ts` — input/output types
+- `module.repository.ts` — database access (Prisma)
+- `module.service.ts` — business rules
+- `module.controller.ts` — HTTP handlers
+- `module.routes.ts` — route definitions
 
-### Empresa
+### Company
 
-- [ ] Criar entidade `Empresa` (id, razaoSocial, nomeFantasia, cnpj, ie, telefone, email, logo, ativo, timestamps)
-- [ ] Criar migration
-- [ ] Implementar CRUD completo (`GET /empresas`, `POST`, `PUT /:id`, `DELETE /:id`, `GET /:id`)
-- [ ] Validar CNPJ único
-- [ ] Upload de logo (armazenamento local ou S3 futuramente)
+- [ ] Create `Company` entity (id, legalName, tradeName, taxId, stateReg, phone, email, logo, active, timestamps)
+- [ ] Create migration
+- [ ] Implement full CRUD (`GET /companies`, `POST`, `PUT /:id`, `DELETE /:id`, `GET /:id`)
+- [ ] Validate unique tax ID
+- [ ] Logo upload (local storage or S3 later)
 
-### Filial
+### Branch
 
-- [ ] Criar entidade `Filial` (id, empresaId, nome, cnpj, ie, endereco, telefone, ativo, timestamps)
-- [ ] Criar migration
-- [ ] Implementar CRUD completo
-- [ ] Associar filial à empresa
-- [ ] Validar que usuário pertence à empresa correta
+- [ ] Create `Branch` entity (id, companyId, name, taxId, stateReg, address, phone, active, timestamps)
+- [ ] Create migration
+- [ ] Implement full CRUD
+- [ ] Associate branch with company
+- [ ] Validate that user belongs to the correct company
 
-### Usuários e Permissões
+### Users & Permissions
 
-- [ ] Criar entidades `Perfil` / `Role` (id, nome, descricao)
-- [ ] Criar entidade `Permissao` (id, chave, descricao, modulo)
-- [ ] Criar tabela pivô `PerfilPermissao`
-- [ ] Criar tabela pivô `UsuarioPerfil`
-- [ ] Implementar seed com perfis padrão: `ADMIN`, `GERENTE`, `OPERADOR`, `FINANCEIRO`
-- [ ] Implementar seed com permissões por módulo (ex: `clientes:criar`, `clientes:editar`, etc.)
-- [ ] Criar CRUD de usuários (`GET /usuarios`, `POST`, `PUT /:id`, `DELETE /:id`)
-- [ ] Criar endpoint para alterar senha do próprio usuário
-- [ ] Criar CRUD de perfis com associação de permissões
-- [ ] Atualizar middleware `authorize` para verificar permissões do banco
-- [ ] Proteger todos os endpoints com `authenticate` e `authorize`
+- [ ] Create `Role` entity (id, name, description)
+- [ ] Create `Permission` entity (id, key, description, module)
+- [ ] Create `RolePermission` pivot table
+- [ ] Create `UserRole` pivot table
+- [ ] Implement seed with default roles: `ADMIN`, `MANAGER`, `OPERATOR`, `FINANCIAL`
+- [ ] Implement seed with permissions per module (e.g. `customers:create`, `customers:edit`, etc.)
+- [ ] Implement user CRUD (`GET /users`, `POST`, `PUT /:id`, `DELETE /:id`)
+- [ ] Create endpoint for changing own password
+- [ ] Implement role CRUD with permission assignment
+- [ ] Update `authorize` middleware to check permissions from database
+- [ ] Protect all endpoints with `authenticate` and `authorize`
 
-### Clientes
+### Customers
 
-- [ ] Criar entidade `Cliente` (id, tipo: PF/PJ, nome/razaoSocial, cpf/cnpj, ie, rg, email, telefone, celular, ativo, timestamps)
-- [ ] Criar entidade `EnderecoCliente` (id, clienteId, cep, logradouro, numero, complemento, bairro, cidade, estado, principal)
-- [ ] Criar entidade `ContatoCliente` (id, clienteId, nome, cargo, email, telefone)
-- [ ] Criar migrations
-- [ ] Implementar CRUD completo de clientes
-- [ ] Implementar CRUD de endereços e contatos (nested)
-- [ ] Busca por nome, CPF/CNPJ, cidade
-- [ ] Busca de CEP automática (ViaCEP)
-- [ ] Importação de clientes via CSV (estrutura futura)
+- [ ] Create `Customer` entity (id, type: INDIVIDUAL/COMPANY, name/legalName, taxId, stateReg, email, phone, mobile, active, timestamps)
+- [ ] Create `CustomerAddress` entity (id, customerId, zipCode, street, number, complement, neighborhood, city, state, primary)
+- [ ] Create `CustomerContact` entity (id, customerId, name, role, email, phone)
+- [ ] Create migrations
+- [ ] Implement full CRUD for customers
+- [ ] Implement CRUD for addresses and contacts (nested)
+- [ ] Search by name, tax ID, city
+- [ ] Auto zip code lookup (ViaCEP)
+- [ ] CSV customer import (future structure)
 
-### Fornecedores
+### Suppliers
 
-- [ ] Criar entidade `Fornecedor` (estrutura similar a Cliente + categoria: arroz/embalagem/serviço/outros)
-- [ ] Criar entidade `EnderecoFornecedor`
-- [ ] Criar entidade `ContatoFornecedor`
-- [ ] Criar migrations
-- [ ] Implementar CRUD completo
-- [ ] Campo `prazoEntregaDias` e `observacoes`
+- [ ] Create `Supplier` entity (similar structure to Customer + category: rice/packaging/service/other)
+- [ ] Create `SupplierAddress` entity
+- [ ] Create `SupplierContact` entity
+- [ ] Create migrations
+- [ ] Implement full CRUD
+- [ ] `leadTimeDays` and `notes` fields
 
-### Unidades de Medida
+### Units of Measure
 
-- [ ] Criar entidade `UnidadeMedida` (id, nome, sigla, tipo: PESO/VOLUME/UNIDADE/COMPRIMENTO, ativo)
-- [ ] Criar migration
-- [ ] Implementar CRUD
-- [ ] Criar seed com unidades padrão: KG, TON, SC (saco), UN, M, L, G
+- [ ] Create `UnitOfMeasure` entity (id, name, abbreviation, type: WEIGHT/VOLUME/UNIT/LENGTH, active)
+- [ ] Create migration
+- [ ] Implement CRUD
+- [ ] Create seed with default units: KG, TON, BAG, UN, M, L, G
 
-### Embalagens
+### Packaging
 
-- [ ] Criar entidade `Embalagem` (id, descricao, capacidade, unidadeMedidaId, material, ativo, timestamps)
-- [ ] Criar migration
-- [ ] Implementar CRUD
-- [ ] Exemplos: "Saco 50kg", "Saco 25kg", "Caixa 10kg"
+- [ ] Create `Packaging` entity (id, description, capacity, unitOfMeasureId, material, active, timestamps)
+- [ ] Create migration
+- [ ] Implement CRUD
+- [ ] Examples: "50kg Bag", "25kg Bag", "10kg Box"
 
-### Produtos
+### Products
 
-- [ ] Criar entidade `Produto` (id, codigo, nome, descricao, tipo: MATERIA_PRIMA/PRODUTO_ACABADO/EMBALAGEM/INSUMO, unidadeMedidaId, embalagemId, pesoLiquido, pesoBruto, estoqueMinimo, estoqueMaximo, ativo, timestamps)
-- [ ] Criar entidade `CategoriaProduto` (id, nome, descricao)
-- [ ] Criar migration
-- [ ] Implementar CRUD completo de produtos
-- [ ] Implementar CRUD de categorias
-- [ ] Geração automática de código de produto
-- [ ] Upload de imagem do produto
-- [ ] Campos específicos para arroz: variedade, tipo (longo fino, agulhinha, etc.), classificação
-- [ ] Busca por código, nome, categoria
+- [ ] Create `Product` entity (id, code, name, description, type: RAW_MATERIAL/FINISHED_GOOD/PACKAGING/SUPPLY, unitOfMeasureId, packagingId, netWeight, grossWeight, minStock, maxStock, active, timestamps)
+- [ ] Create `ProductCategory` entity (id, name, description)
+- [ ] Create migration
+- [ ] Implement full product CRUD
+- [ ] Implement category CRUD
+- [ ] Automatic product code generation
+- [ ] Product image upload
+- [ ] Rice-specific fields: variety, type (long grain, etc.), classification
+- [ ] Search by code, name, category
 
-### Frontend — Cadastros
+### Frontend — Registrations
 
-Para cada entidade acima, criar:
+For each entity above, create:
 
-- [ ] `ListView.vue` com DataTable, filtros e paginação
-- [ ] `FormView.vue` (criação e edição no mesmo componente)
-- [ ] `DetailView.vue` (visualização completa)
-- [ ] Service de API correspondente (`clienteService.ts`, etc.)
-- [ ] Store Pinia se necessário para cache local
-- [ ] Rotas no Vue Router com lazy loading
-- [ ] Links no Sidebar agrupados por seção
-
----
-
-## Fase 4 — Estoque e Lotes
-
-> Objetivo: controle completo de estoque com rastreabilidade por lote.
-
-### Backend — Estoque
-
-- [ ] Criar entidade `Estoque` (id, produtoId, filialId, saldo, unidadeMedidaId, updatedAt)
-- [ ] Criar entidade `Lote` (id, codigo, produtoId, fornecedorId, dataEntrada, dataVencimento, quantidadeInicial, saldoAtual, status: ATIVO/ESGOTADO/BLOQUEADO, observacoes, timestamps)
-- [ ] Criar entidade `MovimentacaoEstoque` (id, tipo: ENTRADA/SAIDA/TRANSFERENCIA/AJUSTE/PERDA, produtoId, loteId, filialId, quantidade, saldoAnterior, saldoApos, documentoOrigem, documentoOrigemId, responsavelId, observacoes, timestamps)
-- [ ] Criar migrations
-- [ ] Criar `EstoqueService` com métodos: `entrar`, `sair`, `transferir`, `ajustar`, `getSaldo`, `getSaldoPorLote`
-- [ ] Garantir atomicidade nas movimentações (transaction do Prisma)
-- [ ] Não permitir saldo negativo (validação no service)
-- [ ] Criar endpoints: `GET /estoque`, `GET /estoque/:produtoId`, `GET /estoque/saldo/:produtoId/filial/:filialId`
-- [ ] Criar endpoints de movimentação: `POST /movimentacoes`, `GET /movimentacoes`, `GET /movimentacoes/:id`
-- [ ] Criar endpoint de ajuste de estoque (com justificativa obrigatória)
-- [ ] Criar endpoint de transferência entre filiais
-- [ ] Criar endpoint de consulta de extrato por produto/lote
-
-### Lotes
-
-- [ ] Geração automática de código de lote (ex: `LOT-2025-0001`)
-- [ ] CRUD completo de lotes
-- [ ] Endpoints: `GET /lotes`, `POST /lotes`, `PUT /lotes/:id`, `GET /lotes/:id`
-- [ ] Filtros: produto, fornecedor, data de entrada, status
-- [ ] Rastreabilidade: `GET /lotes/:id/movimentacoes` (todo histórico do lote)
-- [ ] Alertas de lotes próximos ao vencimento (query de consulta)
-- [ ] Bloqueio de lote (impede saídas)
-
-### Frontend — Estoque
-
-- [ ] `EstoqueView.vue` — posição atual por produto/filial com filtros
-- [ ] `MovimentacoesView.vue` — histórico de movimentações com filtros avançados
-- [ ] `AjusteEstoqueModal.vue` — modal para ajuste manual com justificativa
-- [ ] `TransferenciaModal.vue` — transferência entre filiais
-- [ ] `LotesView.vue` — lista de lotes com status e saldo
-- [ ] `LoteDetailView.vue` — histórico completo do lote
-- [ ] Cards de resumo: total em estoque, abaixo do mínimo, lotes vencendo
-- [ ] Alerta visual para produtos abaixo do estoque mínimo
+- [ ] `ListView.vue` with DataTable, filters and pagination
+- [ ] `FormView.vue` (create and edit in the same component)
+- [ ] `DetailView.vue` (full view)
+- [ ] Corresponding API service (`customerService.ts`, etc.)
+- [ ] Pinia store if needed for local cache
+- [ ] Vue Router routes with lazy loading
+- [ ] Sidebar links grouped by section
 
 ---
 
-## Fase 5 — Compras
+## Phase 4 — Inventory & Batches
 
-> Objetivo: registrar entradas de matéria-prima e insumos.
+> Goal: full inventory control with batch traceability.
 
-### Backend — Compras
+### Backend — Inventory
 
-- [ ] Criar entidade `PedidoCompra` (id, numero, fornecedorId, filialId, status: RASCUNHO/CONFIRMADO/RECEBIDO/CANCELADO, dataEmissao, dataPrevistaEntrega, observacoes, totalBruto, totalDesconto, totalLiquido, timestamps)
-- [ ] Criar entidade `ItemPedidoCompra` (id, pedidoCompraId, produtoId, quantidade, unidadeMedidaId, precoUnitario, desconto, total)
-- [ ] Criar entidade `RecebimentoCompra` (id, pedidoCompraId, dataRecebimento, notaFiscal, responsavelId, observacoes)
-- [ ] Criar entidade `ItemRecebimentoCompra` (id, recebimentoId, itemPedidoId, produtoId, loteId, quantidadeRecebida, quantidadeConferida)
-- [ ] Criar migrations
-- [ ] Implementar CRUD de pedidos de compra
-- [ ] Cálculo automático de totais ao salvar/atualizar itens
-- [ ] Fluxo de status: `RASCUNHO → CONFIRMADO → RECEBIDO/CANCELADO`
-- [ ] Ao receber compra: criar lote automaticamente + gerar movimentação de ENTRADA no estoque
-- [ ] Validar que quantidade recebida não excede quantidade pedida
-- [ ] Número sequencial de pedido (ex: `PC-2025-0001`)
-- [ ] Endpoints: CRUD completo + `POST /pedidos-compra/:id/confirmar` + `POST /pedidos-compra/:id/receber`
+- [ ] Create `Inventory` entity (id, productId, branchId, balance, unitOfMeasureId, updatedAt)
+- [ ] Create `Batch` entity (id, code, productId, supplierId, entryDate, expirationDate, initialQuantity, currentBalance, status: ACTIVE/DEPLETED/BLOCKED, notes, timestamps)
+- [ ] Create `InventoryMovement` entity (id, type: ENTRY/EXIT/TRANSFER/ADJUSTMENT/LOSS, productId, batchId, branchId, quantity, previousBalance, newBalance, sourceDocument, sourceDocumentId, responsibleId, notes, timestamps)
+- [ ] Create migrations
+- [ ] Create `InventoryService` with methods: `entry`, `exit`, `transfer`, `adjust`, `getBalance`, `getBalanceByBatch`
+- [ ] Guarantee atomicity in movements (Prisma transaction)
+- [ ] Prevent negative balance (validation in service)
+- [ ] Create endpoints: `GET /inventory`, `GET /inventory/:productId`, `GET /inventory/balance/:productId/branch/:branchId`
+- [ ] Create movement endpoints: `POST /movements`, `GET /movements`, `GET /movements/:id`
+- [ ] Create inventory adjustment endpoint (with mandatory justification)
+- [ ] Create inter-branch transfer endpoint
+- [ ] Create statement query endpoint by product/batch
 
-### Frontend — Compras
+### Batches
 
-- [ ] `PedidosCompraListView.vue`
-- [ ] `PedidoCompraFormView.vue` (com linha de itens dinâmica)
-- [ ] `RecebimentoCompraView.vue` (conferência e recebimento)
-- [ ] `PedidoCompraDetailView.vue`
-- [ ] Status coloridos com fluxo visual
+- [ ] Automatic batch code generation (e.g. `BAT-2025-0001`)
+- [ ] Full batch CRUD
+- [ ] Endpoints: `GET /batches`, `POST /batches`, `PUT /batches/:id`, `GET /batches/:id`
+- [ ] Filters: product, supplier, entry date, status
+- [ ] Traceability: `GET /batches/:id/movements` (full batch history)
+- [ ] Alerts for batches near expiration (query)
+- [ ] Batch blocking (prevents exits)
 
----
+### Frontend — Inventory
 
-## Fase 6 — Produção e Beneficiamento
-
-> Objetivo: registrar o processo produtivo de beneficiamento de arroz.
-
-### Backend — Produção
-
-- [ ] Criar entidade `OrdemProducao` (id, numero, tipo: BENEFICIAMENTO/REPROCESSO, status: ABERTA/EM_ANDAMENTO/ENCERRADA/CANCELADA, dataAbertura, dataPrevisao, dataEncerramento, filialId, responsavelId, observacoes, timestamps)
-- [ ] Criar entidade `ItemConsumoOP` (id, ordemProducaoId, produtoId, loteId, quantidadePrevista, quantidadeConsumida) — matérias-primas consumidas
-- [ ] Criar entidade `ItemProducaoOP` (id, ordemProducaoId, produtoId, loteId, quantidadePrevista, quantidadeProducida) — produtos gerados
-- [ ] Criar entidade `ApontamentoProducao` (id, ordemProducaoId, dataHora, tipo: INICIO/PARADA/RETOMADA/ENCERRAMENTO, responsavelId, observacoes) — controle de tempo de máquina
-- [ ] Criar entidade `PerdasProducao` (id, ordemProducaoId, tipo: QUIRERA/IMPUREZA/UMIDADE/OUTROS, quantidade, percentual)
-- [ ] Criar migrations
-- [ ] Implementar CRUD de ordens de produção
-- [ ] Número sequencial de OP (ex: `OP-2025-0001`)
-- [ ] Fluxo de status: `ABERTA → EM_ANDAMENTO → ENCERRADA/CANCELADA`
-- [ ] Ao encerrar OP: consumir estoque de matérias-primas (SAIDA) + gerar estoque de produtos (ENTRADA) + registrar perdas
-- [ ] Calcular rendimento: `(quantidade produzida / quantidade consumida) * 100`
-- [ ] Calcular percentual de perda por tipo
-- [ ] Gerar lote de produto automaticamente ao encerrar OP (com rastreabilidade para lotes de MP consumidos)
-- [ ] Endpoints: CRUD + `POST /ordens-producao/:id/iniciar` + `POST /ordens-producao/:id/encerrar`
-- [ ] `GET /ordens-producao/:id/rastreabilidade` — árvore completa de rastreabilidade
-
-### Beneficiamento de Arroz — Campos Específicos
-
-- [ ] Adicionar campos de qualidade à OP: `umidadeEntrada`, `umidadeSaida`, `rendimentoInteiro`, `rendimentoQuebrado`, `percentualImpureza`
-- [ ] Criar entidade `ClassificacaoArroz` (id, ordemProducaoId, loteId, granulometria, cor, odor, umidade, impureza, renda, resultado: APROVADO/REPROVADO)
-- [ ] Criar endpoints para registrar classificação
-- [ ] Bloquear lote reprovado automaticamente
-
-### Frontend — Produção
-
-- [ ] `OrdensProducaoListView.vue`
-- [ ] `OrdemProducaoFormView.vue` (com consumos e produções previstas)
-- [ ] `OrdemProducaoDetailView.vue` (acompanhamento em tempo real)
-- [ ] `ApontamentoModal.vue` (registrar início/parada/encerramento)
-- [ ] `ClassificacaoModal.vue` (registrar classificação do arroz)
-- [ ] Dashboard de produção: OPs abertas, em andamento, rendimento médio
+- [ ] `InventoryView.vue` — current position by product/branch with filters
+- [ ] `MovementsView.vue` — movement history with advanced filters
+- [ ] `InventoryAdjustmentModal.vue` — manual adjustment modal with justification
+- [ ] `TransferModal.vue` — inter-branch transfer
+- [ ] `BatchesView.vue` — batch list with status and balance
+- [ ] `BatchDetailView.vue` — full batch history
+- [ ] Summary cards: total in stock, below minimum, expiring batches
+- [ ] Visual alert for products below minimum stock
 
 ---
 
-## Fase 7 — Vendas e Expedição
+## Phase 5 — Purchasing
 
-> Objetivo: emitir pedidos de venda, romaneio e controlar expedição.
+> Goal: record raw material and supply entries.
 
-### Backend — Vendas
+### Backend — Purchasing
 
-- [ ] Criar entidade `PedidoVenda` (id, numero, clienteId, filialId, status: RASCUNHO/CONFIRMADO/SEPARANDO/EXPEDIDO/CANCELADO, dataEmissao, dataPrevisaoEntrega, condicaoPagamento, observacoes, totalBruto, totalDesconto, totalLiquido, timestamps)
-- [ ] Criar entidade `ItemPedidoVenda` (id, pedidoVendaId, produtoId, loteId, quantidade, unidadeMedidaId, precoUnitario, desconto, total)
-- [ ] Criar entidade `Romaneio` (id, numero, pedidoVendaId, filialId, dataRomaneio, motorista, placa, observacoes, status: ABERTO/FECHADO)
-- [ ] Criar entidade `ItemRomaneio` (id, romaneioId, produtoId, loteId, quantidadeSeparada, quantidadeExpedida, embalagem)
-- [ ] Criar entidade `Expedicao` (id, romaneioId, dataExpedicao, responsavelId, observacoes)
-- [ ] Criar migrations
-- [ ] Número sequencial de pedido de venda (ex: `PV-2025-0001`) e romaneio (ex: `ROM-2025-0001`)
-- [ ] Fluxo: `RASCUNHO → CONFIRMADO → SEPARANDO → EXPEDIDO`
-- [ ] Verificar disponibilidade de estoque ao confirmar pedido
-- [ ] Reservar estoque ao confirmar (campo `reservado` no estoque)
-- [ ] Dar baixa no estoque ao expedir (SAIDA + libera reserva)
-- [ ] Endpoints CRUD + `POST /pedidos-venda/:id/confirmar` + `POST /pedidos-venda/:id/separar` + `POST /pedidos-venda/:id/expedir`
-- [ ] `GET /pedidos-venda/:id/imprimir` — gerar PDF do pedido
+- [ ] Create `PurchaseOrder` entity (id, number, supplierId, branchId, status: DRAFT/CONFIRMED/RECEIVED/CANCELLED, issueDate, expectedDelivery, notes, grossTotal, discountTotal, netTotal, timestamps)
+- [ ] Create `PurchaseOrderItem` entity (id, purchaseOrderId, productId, quantity, unitOfMeasureId, unitPrice, discount, total)
+- [ ] Create `PurchaseReceipt` entity (id, purchaseOrderId, receiptDate, invoiceNumber, responsibleId, notes)
+- [ ] Create `PurchaseReceiptItem` entity (id, receiptId, orderItemId, productId, batchId, receivedQuantity, checkedQuantity)
+- [ ] Create migrations
+- [ ] Implement purchase order CRUD
+- [ ] Automatic total calculation when saving/updating items
+- [ ] Status flow: `DRAFT → CONFIRMED → RECEIVED/CANCELLED`
+- [ ] On receipt: automatically create batch + generate ENTRY inventory movement
+- [ ] Validate that received quantity does not exceed ordered quantity
+- [ ] Sequential order number (e.g. `PO-2025-0001`)
+- [ ] Endpoints: full CRUD + `POST /purchase-orders/:id/confirm` + `POST /purchase-orders/:id/receive`
 
-### Frontend — Vendas
+### Frontend — Purchasing
 
-- [ ] `PedidosVendaListView.vue`
-- [ ] `PedidoVendaFormView.vue` (com seleção de produto/lote e verificação de estoque)
-- [ ] `PedidoVendaDetailView.vue`
-- [ ] `RomaneioFormView.vue`
-- [ ] `RomaneioDetailView.vue` (para conferência e impressão)
-- [ ] `ExpedicaoView.vue`
-- [ ] Preview de impressão do romaneio
+- [ ] `PurchaseOrdersListView.vue`
+- [ ] `PurchaseOrderFormView.vue` (with dynamic item rows)
+- [ ] `PurchaseReceiptView.vue` (check-in and receiving)
+- [ ] `PurchaseOrderDetailView.vue`
+- [ ] Colored statuses with visual flow
 
 ---
 
-## Fase 8 — Financeiro
+## Phase 6 — Production & Processing
 
-> Objetivo: controle de contas a pagar, receber e fluxo de caixa.
+> Goal: record the rice processing production flow.
 
-### Backend — Financeiro
+### Backend — Production
 
-- [ ] Criar entidade `ContaReceber` (id, numero, clienteId, pedidoVendaId?, descricao, valor, dataEmissao, dataVencimento, dataPagamento, status: PENDENTE/PARCIAL/PAGO/VENCIDO/CANCELADO, formaPagamento, observacoes, timestamps)
-- [ ] Criar entidade `ContaPagar` (id, numero, fornecedorId, pedidoCompraId?, descricao, valor, dataEmissao, dataVencimento, dataPagamento, status, formaPagamento, observacoes, timestamps)
-- [ ] Criar entidade `Parcela` (id, contaReceberOuPagarId, numero, valor, dataVencimento, dataPagamento, status)
-- [ ] Criar entidade `CentroCusto` (id, nome, descricao, tipo: RECEITA/DESPESA, ativo)
-- [ ] Criar entidade `LancamentoFinanceiro` (id, tipo: RECEITA/DESPESA, descricao, valor, dataPagamento, centroCustoId, contaId, categoriaId, observacoes)
-- [ ] Criar migrations
-- [ ] Gerar contas a receber automaticamente ao expedir pedido de venda
-- [ ] Gerar contas a pagar automaticamente ao receber pedido de compra
-- [ ] Registrar baixa de pagamento (parcial ou total)
-- [ ] Calcular juros/multa por atraso
-- [ ] Query de fluxo de caixa por período
-- [ ] Query de inadimplência (contas vencidas)
-- [ ] Endpoints: CRUD de contas + `POST /contas-receber/:id/pagar` + `POST /contas-pagar/:id/pagar`
+- [ ] Create `ProductionOrder` entity (id, number, type: PROCESSING/REPROCESSING, status: OPEN/IN_PROGRESS/CLOSED/CANCELLED, openDate, expectedDate, closeDate, branchId, responsibleId, notes, timestamps)
+- [ ] Create `ProductionOrderConsumption` entity (id, productionOrderId, productId, batchId, plannedQuantity, consumedQuantity) — consumed raw materials
+- [ ] Create `ProductionOrderOutput` entity (id, productionOrderId, productId, batchId, plannedQuantity, producedQuantity) — generated products
+- [ ] Create `ProductionEntry` entity (id, productionOrderId, dateTime, type: START/STOP/RESUME/CLOSE, responsibleId, notes) — machine time control
+- [ ] Create `ProductionLoss` entity (id, productionOrderId, type: BROKEN/IMPURITY/MOISTURE/OTHER, quantity, percentage)
+- [ ] Create migrations
+- [ ] Implement production order CRUD
+- [ ] Sequential PO number (e.g. `PO-2025-0001`)
+- [ ] Status flow: `OPEN → IN_PROGRESS → CLOSED/CANCELLED`
+- [ ] On close: consume raw material stock (EXIT) + generate product stock (ENTRY) + record losses
+- [ ] Calculate yield: `(produced quantity / consumed quantity) * 100`
+- [ ] Calculate loss percentage by type
+- [ ] Automatically generate product batch on close (with traceability to consumed RM batches)
+- [ ] Endpoints: CRUD + `POST /production-orders/:id/start` + `POST /production-orders/:id/close`
+- [ ] `GET /production-orders/:id/traceability` — full traceability tree
 
-### Frontend — Financeiro
+### Rice Processing — Specific Fields
 
-- [ ] `ContasReceberView.vue` (com filtro por status, vencimento, cliente)
-- [ ] `ContasPagarView.vue` (com filtro por status, vencimento, fornecedor)
-- [ ] `BaixaPagamentoModal.vue` (registrar pagamento com forma de pagamento)
-- [ ] `FluxoCaixaView.vue` (entradas e saídas por período, saldo projetado)
-- [ ] Cards: total a receber, total a pagar, saldo do mês, inadimplência
+- [ ] Add quality fields to PO: `inputMoisture`, `outputMoisture`, `wholeGrainYield`, `brokenGrainYield`, `impurityPercentage`
+- [ ] Create `RiceClassification` entity (id, productionOrderId, batchId, granulometry, color, odor, moisture, impurity, yield, result: APPROVED/REJECTED)
+- [ ] Create endpoints to register classification
+- [ ] Automatically block rejected batch
+
+### Frontend — Production
+
+- [ ] `ProductionOrdersListView.vue`
+- [ ] `ProductionOrderFormView.vue` (with planned consumptions and outputs)
+- [ ] `ProductionOrderDetailView.vue` (real-time tracking)
+- [ ] `ProductionEntryModal.vue` (record start/stop/close)
+- [ ] `ClassificationModal.vue` (record rice classification)
+- [ ] Production dashboard: open POs, in progress, average yield
 
 ---
 
-## Fase 9 — Dashboard e Relatórios MVP
+## Phase 7 — Sales & Shipping
 
-> Objetivo: visão geral do negócio em tempo real.
+> Goal: issue sales orders, shipping manifest and control dispatch.
+
+### Backend — Sales
+
+- [ ] Create `SalesOrder` entity (id, number, customerId, branchId, status: DRAFT/CONFIRMED/PICKING/SHIPPED/CANCELLED, issueDate, expectedDelivery, paymentTerms, notes, grossTotal, discountTotal, netTotal, timestamps)
+- [ ] Create `SalesOrderItem` entity (id, salesOrderId, productId, batchId, quantity, unitOfMeasureId, unitPrice, discount, total)
+- [ ] Create `ShippingManifest` entity (id, number, salesOrderId, branchId, manifestDate, driver, licensePlate, notes, status: OPEN/CLOSED)
+- [ ] Create `ShippingManifestItem` entity (id, manifestId, productId, batchId, pickedQuantity, shippedQuantity, packaging)
+- [ ] Create `Dispatch` entity (id, manifestId, dispatchDate, responsibleId, notes)
+- [ ] Create migrations
+- [ ] Sequential sales order number (e.g. `SO-2025-0001`) and manifest number (e.g. `MAN-2025-0001`)
+- [ ] Flow: `DRAFT → CONFIRMED → PICKING → SHIPPED`
+- [ ] Check stock availability when confirming order
+- [ ] Reserve stock when confirming (reserved field in inventory)
+- [ ] Deduct stock on dispatch (EXIT + release reservation)
+- [ ] Endpoints: CRUD + `POST /sales-orders/:id/confirm` + `POST /sales-orders/:id/pick` + `POST /sales-orders/:id/ship`
+- [ ] `GET /sales-orders/:id/print` — generate order PDF
+
+### Frontend — Sales
+
+- [ ] `SalesOrdersListView.vue`
+- [ ] `SalesOrderFormView.vue` (with product/batch selection and stock check)
+- [ ] `SalesOrderDetailView.vue`
+- [ ] `ShippingManifestFormView.vue`
+- [ ] `ShippingManifestDetailView.vue` (for checking and printing)
+- [ ] `DispatchView.vue`
+- [ ] Manifest print preview
+
+---
+
+## Phase 8 — Financial
+
+> Goal: control accounts receivable, payable and cash flow.
+
+### Backend — Financial
+
+- [ ] Create `AccountReceivable` entity (id, number, customerId, salesOrderId?, description, amount, issueDate, dueDate, paymentDate, status: PENDING/PARTIAL/PAID/OVERDUE/CANCELLED, paymentMethod, notes, timestamps)
+- [ ] Create `AccountPayable` entity (id, number, supplierId, purchaseOrderId?, description, amount, issueDate, dueDate, paymentDate, status, paymentMethod, notes, timestamps)
+- [ ] Create `Installment` entity (id, accountId, number, amount, dueDate, paymentDate, status)
+- [ ] Create `CostCenter` entity (id, name, description, type: REVENUE/EXPENSE, active)
+- [ ] Create `FinancialEntry` entity (id, type: REVENUE/EXPENSE, description, amount, paymentDate, costCenterId, accountId, categoryId, notes)
+- [ ] Create migrations
+- [ ] Automatically generate accounts receivable when shipping sales order
+- [ ] Automatically generate accounts payable when receiving purchase order
+- [ ] Register payment (partial or full)
+- [ ] Calculate late fees/interest
+- [ ] Cash flow query by period
+- [ ] Overdue query (overdue accounts)
+- [ ] Endpoints: accounts CRUD + `POST /accounts-receivable/:id/pay` + `POST /accounts-payable/:id/pay`
+
+### Frontend — Financial
+
+- [ ] `AccountsReceivableView.vue` (filtered by status, due date, customer)
+- [ ] `AccountsPayableView.vue` (filtered by status, due date, supplier)
+- [ ] `PaymentModal.vue` (register payment with payment method)
+- [ ] `CashFlowView.vue` (income and expenses by period, projected balance)
+- [ ] Cards: total receivable, total payable, monthly balance, overdue
+
+---
+
+## Phase 9 — Dashboard & MVP Reports
+
+> Goal: real-time business overview.
 
 ### Backend — Dashboard
 
-- [ ] `GET /dashboard/resumo` — cards principais (vendas do mês, compras, estoque crítico, financeiro)
-- [ ] `GET /dashboard/producao` — OPs abertas, rendimento médio
-- [ ] `GET /dashboard/estoque/alertas` — produtos abaixo do mínimo, lotes vencendo
+- [ ] `GET /dashboard/summary` — main cards (monthly sales, purchases, critical stock, financial)
+- [ ] `GET /dashboard/production` — open POs, average yield
+- [ ] `GET /dashboard/inventory/alerts` — products below minimum, expiring batches
 
-### Backend — Relatórios
+### Backend — Reports
 
-- [ ] `GET /relatorios/estoque/posicao` — posição atual do estoque (com filtros)
-- [ ] `GET /relatorios/estoque/movimentacoes` — extrato de movimentações
-- [ ] `GET /relatorios/vendas/periodo` — vendas por período/cliente/produto
-- [ ] `GET /relatorios/compras/periodo` — compras por período/fornecedor/produto
-- [ ] `GET /relatorios/producao/rendimento` — rendimento por OP/período
-- [ ] `GET /relatorios/financeiro/dre-simplificado` — receitas vs despesas
-- [ ] Exportação de relatórios para CSV e PDF
+- [ ] `GET /reports/inventory/position` — current inventory position (with filters)
+- [ ] `GET /reports/inventory/movements` — movement statement
+- [ ] `GET /reports/sales/period` — sales by period/customer/product
+- [ ] `GET /reports/purchases/period` — purchases by period/supplier/product
+- [ ] `GET /reports/production/yield` — yield by PO/period
+- [ ] `GET /reports/financial/simplified-income-statement` — revenue vs expenses
+- [ ] Report export to CSV and PDF
 
-### Frontend — Dashboard e Relatórios
+### Frontend — Dashboard & Reports
 
-- [ ] `DashboardView.vue` com cards, gráficos e alertas
-- [ ] Instalar e configurar biblioteca de gráficos (`Chart.js` com `vue-chartjs`)
-- [ ] Gráfico de vendas por mês (linha)
-- [ ] Gráfico de produção por mês (barra)
-- [ ] Gráfico de fluxo de caixa (área)
-- [ ] `RelatoriosView.vue` com seleção de relatório e filtros
-- [ ] Tabela de resultado com exportação
+- [ ] `DashboardView.vue` with cards, charts and alerts
+- [ ] Install and configure chart library (`Chart.js` with `vue-chartjs`)
+- [ ] Monthly sales chart (line)
+- [ ] Monthly production chart (bar)
+- [ ] Cash flow chart (area)
+- [ ] `ReportsView.vue` with report selection and filters
+- [ ] Result table with export
 
 ---
 
-## MVP — Definição e Critérios
+## MVP — Definition & Criteria
 
-> O MVP está completo quando uma empresa consegue operar o dia a dia sem papel.
+> MVP is complete when a company can operate day-to-day without paper.
 
-### O que está no MVP
+### What's in the MVP
 
-| Módulo | Funcionalidades |
+| Module | Features |
 |---|---|
-| Autenticação | Login, logout, refresh token, controle de sessão |
-| Empresa/Filial | Cadastro básico, configuração inicial |
-| Usuários | CRUD com perfis (Admin, Gerente, Operador) |
-| Clientes | CRUD completo com endereços |
-| Fornecedores | CRUD completo |
-| Produtos | CRUD com tipos e categorias |
-| Embalagens | CRUD |
-| Unidades de Medida | CRUD + seed |
-| Estoque | Posição atual, movimentações, ajustes |
-| Lotes | Criação, rastreabilidade básica |
-| Compras | Pedido → Recebimento → Entrada em estoque |
-| Produção | OP → Consumo de MP → Produção → Saída/Entrada estoque |
-| Vendas | Pedido → Romaneio → Expedição → Baixa estoque |
-| Financeiro | Contas a pagar/receber, fluxo de caixa básico |
-| Dashboard | Cards resumo + alertas críticos |
-| Relatórios | Estoque, vendas, compras, produção (básico) |
+| Authentication | Login, logout, refresh token, session control |
+| Company/Branch | Basic registration, initial setup |
+| Users | CRUD with roles (Admin, Manager, Operator) |
+| Customers | Full CRUD with addresses |
+| Suppliers | Full CRUD |
+| Products | CRUD with types and categories |
+| Packaging | CRUD |
+| Units of Measure | CRUD + seed |
+| Inventory | Current position, movements, adjustments |
+| Batches | Creation, basic traceability |
+| Purchasing | Order → Receipt → Inventory entry |
+| Production | PO → RM consumption → Production → Stock in/out |
+| Sales | Order → Manifest → Dispatch → Stock deduction |
+| Financial | Accounts payable/receivable, basic cash flow |
+| Dashboard | Summary cards + critical alerts |
+| Reports | Inventory, sales, purchasing, production (basic) |
 
-### O que NÃO está no MVP (pós-MVP)
+### What's NOT in the MVP (post-MVP)
 
-- Integração NF-e / SEFAZ
-- Multi-tenancy avançado
-- App mobile
-- Integração bancária
-- BI avançado
-- Testes automatizados completos
+- NF-e / SEFAZ integration
+- Advanced multi-tenancy
+- Mobile app
+- Banking integration
+- Advanced BI
+- Complete automated tests
 - CI/CD
-- Gestão de qualidade avançada
+- Advanced quality management
 
-### Critérios de aceite do MVP
+### MVP Acceptance Criteria
 
-- [ ] Usuário consegue fazer login e acessar o sistema
-- [ ] Usuário consegue cadastrar produtos, clientes e fornecedores
-- [ ] Usuário consegue registrar compra de matéria-prima e ver estoque atualizado
-- [ ] Usuário consegue abrir OP, registrar consumo/produção e ver estoque atualizado
-- [ ] Usuário consegue criar pedido de venda, expedir e ver estoque baixado
-- [ ] Usuário consegue registrar pagamentos e ver fluxo de caixa
-- [ ] Dashboard exibe informações corretas e atualizadas
-- [ ] Sistema funciona em ambiente Docker (produção)
+- [ ] User can log in and access the system
+- [ ] User can register products, customers and suppliers
+- [ ] User can record raw material purchase and see updated inventory
+- [ ] User can open PO, record consumption/production and see updated inventory
+- [ ] User can create sales order, dispatch and see inventory deducted
+- [ ] User can register payments and view cash flow
+- [ ] Dashboard displays correct and up-to-date information
+- [ ] System runs in Docker environment (production)
 
 ---
 
-## v1.1 — Qualidade e Estabilidade
+## v1.1 — Quality & Stability
 
-> Após o MVP validado com usuários reais.
+> After MVP validated with real users.
 
-### Testes
+### Tests
 
-- [ ] Configurar Vitest no backend
-- [ ] Escrever testes unitários para todos os Services
-- [ ] Escrever testes de integração para rotas principais (supertest)
-- [ ] Configurar Vitest no frontend
-- [ ] Escrever testes unitários para composables e stores
-- [ ] Configurar Playwright para testes E2E
-- [ ] Escrever testes E2E dos fluxos críticos (login, venda, compra, produção)
-- [ ] Adicionar cobertura de código mínima (70%)
+- [ ] Configure Vitest in backend
+- [ ] Write unit tests for all Services
+- [ ] Write integration tests for main routes (supertest)
+- [ ] Configure Vitest in frontend
+- [ ] Write unit tests for composables and stores
+- [ ] Configure Playwright for E2E tests
+- [ ] Write E2E tests for critical flows (login, sale, purchase, production)
+- [ ] Add minimum code coverage (70%)
 
 ### CI/CD
 
-- [ ] Configurar GitHub Actions
-- [ ] Pipeline: lint → testes → build → deploy
-- [ ] Configurar deploy automático para ambiente de staging
-- [ ] Configurar deploy manual para produção (aprovação)
-- [ ] Configurar Dependabot para atualizações de dependências
+- [ ] Configure GitHub Actions
+- [ ] Pipeline: lint → tests → build → deploy
+- [ ] Configure automatic deploy to staging environment
+- [ ] Configure manual deploy to production (approval required)
+- [ ] Configure Dependabot for dependency updates
 
-### Observabilidade
+### Observability
 
-- [ ] Configurar logger estruturado com níveis (debug/info/warn/error)
-- [ ] Configurar correlação de requests (request ID no header)
-- [ ] Implementar métricas de performance (tempo de resposta por endpoint)
-- [ ] Configurar health check com status dos subsistemas (banco, redis)
-- [ ] Configurar alertas de erro por email (ou integração Slack)
+- [ ] Configure structured logger with levels (debug/info/warn/error)
+- [ ] Configure request correlation (request ID in header)
+- [ ] Implement performance metrics (response time per endpoint)
+- [ ] Configure health check with subsystem status (database, redis)
+- [ ] Configure error alerts by email (or Slack integration)
 
-### Documentação
+### Documentation
 
-- [ ] Escrever `README.md` completo (instalação, configuração, uso)
-- [ ] Documentar API com Swagger/OpenAPI (`swagger-ui-express`)
-- [ ] Documentar arquitetura e decisões técnicas
-- [ ] Criar guia de contribuição (`CONTRIBUTING.md`)
-- [ ] Criar `CHANGELOG.md`
+- [ ] Write complete `README.md` (installation, configuration, usage)
+- [ ] Document API with Swagger/OpenAPI (`swagger-ui-express`)
+- [ ] Document architecture and technical decisions
+- [ ] Create contribution guide (`CONTRIBUTING.md`)
+- [ ] Create `CHANGELOG.md`
 
 ### UX/UI
 
-- [ ] Revisão completa de responsividade (tablets e monitores grandes)
-- [ ] Implementar atalhos de teclado nas tabelas e formulários
-- [ ] Melhorar feedback visual de loading e erros
-- [ ] Revisar acessibilidade (ARIA labels, contraste, navegação por teclado)
-- [ ] Implementar busca global (ctrl+K)
+- [ ] Full responsiveness review (tablets and large monitors)
+- [ ] Implement keyboard shortcuts in tables and forms
+- [ ] Improve loading and error visual feedback
+- [ ] Review accessibility (ARIA labels, contrast, keyboard navigation)
+- [ ] Implement global search (ctrl+K)
 
 ---
 
-## v1.2 — Rastreabilidade e Auditoria
+## v1.2 — Traceability & Audit
 
-### Rastreabilidade
+### Traceability
 
-- [ ] `GET /rastreabilidade/lote/:id` — árvore completa: origem → produção → destino
-- [ ] `GET /rastreabilidade/produto/:id/historico` — toda movimentação do produto
-- [ ] Interface visual de rastreabilidade (árvore ou linha do tempo)
-- [ ] QR Code por lote (para etiquetas)
-- [ ] Impressão de etiqueta de lote
+- [ ] `GET /traceability/batch/:id` — full tree: origin → production → destination
+- [ ] `GET /traceability/product/:id/history` — all product movements
+- [ ] Visual traceability interface (tree or timeline)
+- [ ] QR Code per batch (for labels)
+- [ ] Batch label printing
 
-### Auditoria
+### Audit
 
-- [ ] Criar tabela `AuditLog` (usuario, acao, entidade, entidadeId, dadosAntes, dadosDepois, ip, timestamp)
-- [ ] Criar migration
-- [ ] Implementar middleware de auditoria automática para CUD (create/update/delete)
-- [ ] `GET /auditoria` com filtros (usuário, entidade, período)
-- [ ] Interface de visualização de logs de auditoria
+- [ ] Create `AuditLog` table (user, action, entity, entityId, dataBefore, dataAfter, ip, timestamp)
+- [ ] Create migration
+- [ ] Implement automatic audit middleware for CUD (create/update/delete)
+- [ ] `GET /audit` with filters (user, entity, period)
+- [ ] Audit log viewing interface
 
-### Notificações
+### Notifications
 
-- [ ] Sistema de notificações internas (sino no navbar)
-- [ ] Criar entidade `Notificacao`
-- [ ] Notificar: estoque abaixo do mínimo, lote vencendo, conta vencida
-- [ ] Marcar como lida / limpar notificações
-
----
-
-## v1.3 — Fiscal e Integração NF-e
-
-### NF-e (Nota Fiscal Eletrônica)
-
-- [ ] Pesquisar biblioteca Node.js para NF-e (ex: `node-nfe`)
-- [ ] Cadastrar certificado digital A1 (upload seguro)
-- [ ] Configurar ambiente: homologação e produção SEFAZ
-- [ ] Emitir NF-e a partir do pedido de venda
-- [ ] Cancelar NF-e
-- [ ] Consultar status NF-e
-- [ ] Armazenar XML da NF-e no banco
-- [ ] Download de XML e DANFE (PDF) pela interface
-- [ ] Gerenciar série e numeração de NF-e por empresa/filial
-
-### NF-e de Entrada
-
-- [ ] Importar XML de NF-e de entrada (de fornecedores)
-- [ ] Criar recebimento de compra automaticamente a partir do XML
-- [ ] Conciliar NF-e importada com pedido de compra
-
-### Tributário Básico
-
-- [ ] Cadastro de NCM (Nomenclatura Comum do Mercosul)
-- [ ] Cadastro de CFOP
-- [ ] Configuração de alíquotas por produto e estado (ICMS, PIS, COFINS)
-- [ ] Cálculo automático de impostos no pedido de venda
+- [ ] Internal notification system (bell in navbar)
+- [ ] Create `Notification` entity
+- [ ] Notify: stock below minimum, expiring batch, overdue account
+- [ ] Mark as read / clear notifications
 
 ---
 
-## v2.0 — Módulos Avançados
+## v1.3 — Tax & NF-e Integration
 
-### Gestão de Qualidade
+### NF-e (Brazilian Electronic Invoice)
 
-- [ ] Procedimentos de inspeção de recebimento
-- [ ] Check-list de qualidade por produto
-- [ ] Não conformidades (registro, tratativa, encerramento)
-- [ ] Certificado de análise por lote
-- [ ] Histórico de qualidade por fornecedor
+- [ ] Research Node.js NF-e library (e.g. `node-nfe`)
+- [ ] Register A1 digital certificate (secure upload)
+- [ ] Configure environment: SEFAZ homologation and production
+- [ ] Issue NF-e from sales order
+- [ ] Cancel NF-e
+- [ ] Query NF-e status
+- [ ] Store NF-e XML in database
+- [ ] Download XML and DANFE (PDF) from interface
+- [ ] Manage NF-e series and numbering by company/branch
 
-### Planejamento de Produção
+### Inbound NF-e
 
-- [ ] Planejamento mensal/semanal de produção
-- [ ] Cálculo de necessidade de matéria-prima (MRP básico)
-- [ ] Calendário de produção
-- [ ] Integração com estoque disponível vs demanda de pedidos
+- [ ] Import supplier NF-e XML
+- [ ] Automatically create purchase receipt from XML
+- [ ] Reconcile imported NF-e with purchase order
 
-### Contratos
+### Basic Tax
 
-- [ ] Contratos com clientes (preço fixo por período)
-- [ ] Contratos com fornecedores
-- [ ] Alertas de vencimento de contrato
-
-### Portal do Cliente (básico)
-
-- [ ] Login separado para clientes
-- [ ] Consultar pedidos próprios
-- [ ] Emitir 2ª via de nota fiscal
-- [ ] Histórico de compras
-
-### Integração Bancária
-
-- [ ] Importar extrato bancário (OFX)
-- [ ] Conciliação bancária automática
-- [ ] Integração PIX (cobrança)
-
-### Gestão de Frota (se aplicável)
-
-- [ ] Cadastro de veículos
-- [ ] Registro de abastecimento
-- [ ] Manutenção preventiva/corretiva
-- [ ] Controle de motoristas e CNH
+- [ ] NCM registration (Mercosur Common Nomenclature)
+- [ ] CFOP registration
+- [ ] Tax rate configuration by product and state (ICMS, PIS, COFINS)
+- [ ] Automatic tax calculation in sales order
 
 ---
 
-## v3.0 — Inteligência e Automação
+## v2.0 — Advanced Modules
 
-### BI e Analytics
+### Quality Management
 
-- [ ] Integração com ferramenta de BI (Metabase ou similar)
-- [ ] Relatórios customizáveis pelo usuário
-- [ ] Exportação para Excel avançada
-- [ ] Gráficos interativos com drill-down
+- [ ] Receiving inspection procedures
+- [ ] Quality checklist by product
+- [ ] Non-conformances (registration, treatment, closure)
+- [ ] Certificate of analysis by batch
+- [ ] Quality history by supplier
 
-### Automações
+### Production Planning
 
-- [ ] Regras de reposição automática de estoque (compra automática)
-- [ ] Precificação dinâmica por custo de produção
-- [ ] Envio automático de NF-e por email ao cliente
-- [ ] Boletos automáticos (integração Pagar.me ou similar)
+- [ ] Monthly/weekly production planning
+- [ ] Raw material requirement calculation (basic MRP)
+- [ ] Production calendar
+- [ ] Integration with available stock vs order demand
 
-### App Mobile
+### Contracts
 
-- [ ] Aplicativo React Native (ou Vue Native) para operadores
-- [ ] Leitor de QR Code para rastreabilidade
-- [ ] Consulta de estoque e lotes em campo
-- [ ] Apontamento de produção mobile
+- [ ] Customer contracts (fixed price per period)
+- [ ] Supplier contracts
+- [ ] Contract expiration alerts
 
-### Multi-tenancy SaaS (se pivot)
+### Customer Portal (basic)
 
-- [ ] Isolar dados por tenant (schema por empresa)
-- [ ] Planos de assinatura
-- [ ] Onboarding automatizado
-- [ ] Painel admin do SaaS
+- [ ] Separate login for customers
+- [ ] View own orders
+- [ ] Download invoice copy
+- [ ] Purchase history
+
+### Banking Integration
+
+- [ ] Import bank statement (OFX)
+- [ ] Automatic bank reconciliation
+- [ ] PIX integration (billing)
+
+### Fleet Management (if applicable)
+
+- [ ] Vehicle registration
+- [ ] Fuel record
+- [ ] Preventive/corrective maintenance
+- [ ] Driver and license control
 
 ---
 
-## Entidades do Banco de Dados
+## v3.0 — Intelligence & Automation
 
-> Mapeamento das entidades que existirão no sistema (não é schema, é planejamento).
+### BI & Analytics
 
-### Identidade e Acesso
-- `Usuario` — quem acessa o sistema
-- `Perfil` — grupo de permissões (Admin, Gerente, Operador, Financeiro)
-- `Permissao` — ação granular (clientes:criar, estoque:ajustar)
-- `RefreshToken` — tokens de sessão
+- [ ] BI tool integration (Metabase or similar)
+- [ ] User-customizable reports
+- [ ] Advanced Excel export
+- [ ] Interactive charts with drill-down
 
-### Organização
-- `Empresa` — empresa principal
-- `Filial` — unidade operacional da empresa
+### Automation
 
-### Terceiros
-- `Cliente` — compradores
-- `Fornecedor` — vendedores de MP e insumos
-- `EnderecoCliente` / `EnderecoFornecedor`
-- `ContatoCliente` / `ContatoFornecedor`
+- [ ] Automatic stock replenishment rules (auto purchase)
+- [ ] Dynamic pricing by production cost
+- [ ] Automatic NF-e email to customer
+- [ ] Automatic bank slips (Pagar.me or similar integration)
 
-### Produtos e Embalagens
-- `Produto` — item comercializado ou consumido
-- `CategoriaProduto`
-- `Embalagem` — tipo de embalagem do produto
-- `UnidadeMedida`
+### Mobile App
 
-### Estoque e Lotes
-- `Estoque` — saldo atual por produto/filial
-- `Lote` — rastreabilidade de entrada e produção
-- `MovimentacaoEstoque` — todo débito/crédito no estoque
+- [ ] React Native app (or Vue Native) for operators
+- [ ] QR Code reader for traceability
+- [ ] Field inventory and batch queries
+- [ ] Mobile production entries
 
-### Compras
-- `PedidoCompra`
-- `ItemPedidoCompra`
-- `RecebimentoCompra`
-- `ItemRecebimentoCompra`
+### Multi-tenancy SaaS (if pivot)
 
-### Produção
-- `OrdemProducao`
-- `ItemConsumoOP` — MP consumida
-- `ItemProducaoOP` — produto gerado
-- `ApontamentoProducao`
-- `PerdasProducao`
-- `ClassificacaoArroz`
+- [ ] Isolate data per tenant (schema per company)
+- [ ] Subscription plans
+- [ ] Automated onboarding
+- [ ] SaaS admin panel
 
-### Vendas e Expedição
-- `PedidoVenda`
-- `ItemPedidoVenda`
-- `Romaneio`
-- `ItemRomaneio`
-- `Expedicao`
+---
 
-### Financeiro
-- `ContaReceber`
-- `ContaPagar`
-- `Parcela`
-- `CentroCusto`
-- `LancamentoFinanceiro`
+## Database Entities
 
-### Fiscal (v1.3)
-- `NotaFiscal`
-- `ItemNotaFiscal`
+> Mapping of entities that will exist in the system (not a schema, just planning).
+
+### Identity & Access
+- `User` — who accesses the system
+- `Role` — permission group (Admin, Manager, Operator, Financial)
+- `Permission` — granular action (customers:create, inventory:adjust)
+- `RefreshToken` — session tokens
+
+### Organization
+- `Company` — main company
+- `Branch` — operational unit of the company
+
+### Third Parties
+- `Customer` — buyers
+- `Supplier` — RM and supply sellers
+- `CustomerAddress` / `SupplierAddress`
+- `CustomerContact` / `SupplierContact`
+
+### Products & Packaging
+- `Product` — item sold or consumed
+- `ProductCategory`
+- `Packaging` — product packaging type
+- `UnitOfMeasure`
+
+### Inventory & Batches
+- `Inventory` — current balance by product/branch
+- `Batch` — entry and production traceability
+- `InventoryMovement` — every debit/credit in inventory
+
+### Purchasing
+- `PurchaseOrder`
+- `PurchaseOrderItem`
+- `PurchaseReceipt`
+- `PurchaseReceiptItem`
+
+### Production
+- `ProductionOrder`
+- `ProductionOrderConsumption` — consumed RM
+- `ProductionOrderOutput` — generated product
+- `ProductionEntry`
+- `ProductionLoss`
+- `RiceClassification`
+
+### Sales & Shipping
+- `SalesOrder`
+- `SalesOrderItem`
+- `ShippingManifest`
+- `ShippingManifestItem`
+- `Dispatch`
+
+### Financial
+- `AccountReceivable`
+- `AccountPayable`
+- `Installment`
+- `CostCenter`
+- `FinancialEntry`
+
+### Tax (v1.3)
+- `Invoice`
+- `InvoiceItem`
 - `NCM`
 - `CFOP`
-- `ConfiguracaoFiscal`
+- `TaxConfiguration`
 
-### Sistema
-- `AuditLog` — rastreio de alterações
-- `Notificacao` — alertas internos
-- `ConfiguracaoSistema` — parâmetros gerais
+### System
+- `AuditLog` — change tracking
+- `Notification` — internal alerts
+- `SystemConfiguration` — general parameters
 
 ---
 
-## Padrões e Convenções
+## Standards & Conventions
 
-> Seguir estes padrões em todo o projeto.
+> Follow these standards throughout the project.
 
-### Nomenclatura
+### Naming
 
-- [ ] Arquivos TypeScript: `camelCase.ts` para utilitários, `PascalCase.vue` para componentes
-- [ ] Endpoints REST em português usando kebab-case: `/pedidos-venda`, `/ordens-producao`
-- [ ] Tabelas Prisma em PascalCase singular: `PedidoVenda`, `OrdemProducao`
-- [ ] Colunas em camelCase: `dataEmissao`, `totalLiquido`
-- [ ] Enums em SCREAMING_SNAKE_CASE: `EM_ANDAMENTO`, `PRODUTO_ACABADO`
-- [ ] Variáveis de ambiente em SCREAMING_SNAKE_CASE: `DATABASE_URL`
+- [ ] TypeScript files: `camelCase.ts` for utilities, `PascalCase.vue` for components
+- [ ] REST endpoints in English using kebab-case: `/sales-orders`, `/production-orders`
+- [ ] Prisma tables in singular PascalCase: `SalesOrder`, `ProductionOrder`
+- [ ] Columns in camelCase: `issueDate`, `netTotal`
+- [ ] Enums in SCREAMING_SNAKE_CASE: `IN_PROGRESS`, `FINISHED_GOOD`
+- [ ] Environment variables in SCREAMING_SNAKE_CASE: `DATABASE_URL`
 
 ### Git
 
-- [ ] Commits seguindo Conventional Commits: `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `test:`
-- [ ] Uma funcionalidade por branch
-- [ ] PR obrigatório para merge em `main`
-- [ ] Review antes de merge (mesmo que seja auto-review)
+- [ ] Commits following Conventional Commits: `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `test:`
+- [ ] One feature per branch
+- [ ] PR required for merge into `main`
+- [ ] Review before merge (even if self-review)
 
 ### API
 
-- [ ] Sempre retornar `{ data: ... }` em sucesso e `{ error: { code, message } }` em erro
-- [ ] Usar HTTP status codes corretos (200, 201, 400, 401, 403, 404, 409, 422, 500)
-- [ ] Paginação padrão: `?page=1&limit=20` → resposta `{ data: [], meta: { page, limit, total, totalPages } }`
-- [ ] Datas sempre em ISO 8601 (UTC)
-- [ ] IDs como UUIDs (Prisma `@default(uuid())`)
+- [ ] Always return `{ data: ... }` on success and `{ error: { code, message } }` on error
+- [ ] Use correct HTTP status codes (200, 201, 400, 401, 403, 404, 409, 422, 500)
+- [ ] Default pagination: `?page=1&limit=20` → response `{ data: [], meta: { page, limit, total, totalPages } }`
+- [ ] Dates always in ISO 8601 (UTC)
+- [ ] IDs as UUIDs (Prisma `@default(uuid())`)
 
-### Segurança
+### Security
 
-- [ ] Nunca expor senha nos responses
-- [ ] Nunca logar dados sensíveis
-- [ ] Validar todos os inputs com Zod no backend
-- [ ] Sanitizar inputs para prevenir injeção
-- [ ] Headers de segurança via Helmet
-- [ ] CORS restrito ao domínio do frontend
+- [ ] Never expose password in responses
+- [ ] Never log sensitive data
+- [ ] Validate all inputs with Zod on backend
+- [ ] Sanitize inputs to prevent injection
+- [ ] Security headers via Helmet
+- [ ] CORS restricted to frontend domain
 
 ---
 
-*Última atualização: Junho 2025*
-*Versão do roadmap: 1.0*
+*Last updated: June 2025*
+*Roadmap version: 1.0*
