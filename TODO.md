@@ -63,9 +63,9 @@ mtv-erp/
 ### Docker & Environment
 
 - [ ] Create `docker-compose.yml` for production
-- [ ] Create `docker-compose.dev.yml` for development (with hot-reload)
-- [ ] Configure `postgres` service in Compose (persistent volume)
-- [ ] Configure `pgadmin` service in Compose (dev access)
+- [x] Create `docker-compose.dev.yml` for development (with hot-reload)
+- [x] Configure `postgres` service in Compose (persistent volume)
+- [x] Configure `pgadmin` service in Compose (dev access)
 - [ ] Configure `api` service in Compose
 - [ ] Configure `web` service in Compose
 - [ ] Create backend `Dockerfile` (multi-stage: build + runtime)
@@ -89,13 +89,13 @@ mtv-erp/
 
 ### Backend — Initial Setup
 
-- [ ] Initialize Node.js project with TypeScript (`apps/api`)
-- [ ] Configure `tsconfig.json` (strict mode, path aliases `@/`)
-- [ ] Install dependencies: `express`, `cors`, `helmet`, `morgan`, `dotenv`, `zod`
-- [ ] Install devDependencies: `typescript`, `ts-node-dev`, `@types/express`, `@types/node`
-- [ ] Configure ESLint + Prettier for backend
-- [ ] Create `dev` script with `ts-node-dev` (hot-reload)
-- [ ] Create `build` and `start` scripts for production
+- [x] Initialize Node.js project with TypeScript (`apps/api`)
+- [x] Configure `tsconfig.json` (strict mode, path aliases `@/`)
+- [x] Install dependencies: `express`, `cors`, `helmet`, `morgan`, `dotenv`, `zod`
+- [x] Install devDependencies: `typescript`, `ts-node-dev`, `@types/express`, `@types/node`
+- [x] Configure ESLint + Prettier for backend
+- [x] Create `dev` script with `ts-node-dev` (hot-reload)
+- [x] Create `build` and `start` scripts for production
 
 ### Backend — Folder Structure (adapted Clean Architecture)
 
@@ -120,10 +120,10 @@ apps/api/src/
 └── server.ts         ← entry point
 ```
 
-- [ ] Create backend folder structure
-- [ ] Create `app.ts` with global middlewares (cors, helmet, morgan, json parser)
-- [ ] Create `server.ts` with server initialization
-- [ ] Create health check route `GET /health`
+- [x] Create backend folder structure
+- [x] Create `app.ts` with global middlewares (cors, helmet, morgan, json parser)
+- [x] Create `server.ts` with server initialization
+- [x] Create health check route `GET /health`
 
 ### Backend — Error Handling
 
@@ -136,10 +136,10 @@ apps/api/src/
 
 ### Backend — Prisma ORM
 
-- [ ] Install Prisma: `prisma`, `@prisma/client`
-- [ ] Run `npx prisma init` and configure `schema.prisma`
-- [ ] Configure `postgresql` provider
-- [ ] Create Prisma singleton client (`database/prisma.ts`)
+- [x] Install Prisma: `prisma`, `@prisma/client`
+- [x] Run `npx prisma init` and configure `schema.prisma`
+- [x] Configure `postgresql` provider
+- [x] Create Prisma singleton client (`database/prisma.ts`)
 - [ ] Configure `prisma generate` in build script
 - [ ] Create `database/migrations/` folder (managed by Prisma)
 - [ ] Create `database/seeds/` folder with initial seed (admin user)
