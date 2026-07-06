@@ -5,6 +5,7 @@ import morgan from 'morgan'
 import { errorHandler } from './shared/middlewares/errorHandler'
 import { notFound } from './shared/middlewares/notFound'
 import authRoutes from '@/modules/auth/auth.routes';
+import usersRoutes from '@/modules/users/users.routes';
 
 const app = express()
 
@@ -18,6 +19,7 @@ app.get('/health', (req, res) => {
 })
 
 app.use('/auth', authRoutes)
+app.use('/users', usersRoutes)
 
 app.use(notFound)
 app.use(errorHandler)
